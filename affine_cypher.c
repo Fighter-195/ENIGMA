@@ -7,6 +7,18 @@ char encrypt(char x,int a,int b){
     return z + 'A';
 }
 
+
+char decrypt(char x, int a, int b) {
+    int a_inv = Inverse(a, 26);
+    if (a_inv == -1) {
+        printf("Modular inverse does not exist. Decryption not possible.\n");
+        ;
+    }
+    int y = x - 'A';
+    int z = (a_inv * (y - b + 26)) % 26;  
+    return z + 'A';
+}
+
 int main(){
     int a,b,m=26;
     scanf("%d %d",&a,&b);
@@ -48,5 +60,6 @@ for (int i = 0; i < strlen(s); i++) {
         printf("%c", encrypt(s[i], a, b));
     }
     printf("\n");
+
 
 }
